@@ -1,7 +1,7 @@
 # fly.toml app configuration file generated for mysql-icy-cherry-35 on 2024-09-15T14:37:30+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# https://github.com/Tampereen-Urheilusukeltajat/Blenderi-Backend/blob/8a92a0d570eec38e3c4549d5aa93ffcfcafdd78c/infra/mariadb/fly.toml#L31
 
 app = 'mysql-icy-cherry-35'
 primary_region = 'ams'
@@ -23,6 +23,7 @@ primary_region = 'ams'
   min_machines_running = 0
   [[services.ports]]
     port = 3306
+    handlers = ["pg_tls"]
 
 [processes]
   app = """--datadir /data/mysql \

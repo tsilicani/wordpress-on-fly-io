@@ -14,9 +14,20 @@ primary_region = 'ams'
   cpu_kind = 'shared'
   cpus = 1
 
+[[services]]
+  internal_port = 3306
+  protocol = 'tcp'
+  processes = ["app"]
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  [[services.ports]]
+    port = 3306
+
 [processes]
   app = """--datadir /data/mysql \
     --default-authentication-plugin mysql_native_password"""
+  
 
 [mounts]
   source = "mysqldata"

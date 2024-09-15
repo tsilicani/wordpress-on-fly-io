@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for mysql-icy-cherry-35 on 2024-09-15T14:37:30+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'mysql-icy-cherry-35'
+primary_region = 'ams'
+
+[build]
+  image = 'mysql:8.0.39-bookworm'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[processes]
+  app = """--datadir /data/mysql \
+    --default-authentication-plugin mysql_native_password"""
+
+[mounts]
+  source = "mysqldata"
+  destination = "/data"
+
+[env]
+  MYSQL_DATABASE = "some_db"
+  MYSQL_USER = "non_root_user"

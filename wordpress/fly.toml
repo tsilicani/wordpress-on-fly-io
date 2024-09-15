@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for wordpress-black-dust-168 on 2024-09-15T14:52:11+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'wordpress-black-dust-168'
+primary_region = 'ams'
+
+[build]
+  image = 'wordpress'
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]
+  WORDPRESS_DB_NAME= "some_db"
+  WORDPRESS_DB_USER = "non_root_user"
+  WORDPRESS_DB_PASSWORD = "???"
+  WORDPRESS_DB_HOST= "mysql-icy-cherry-35.internal"
+  WORDPRESS_CONFIG_EXTRA = "define( 'WP_HOME', 'https://wordpress-black-dust-168.fly.dev' );define( 'WP_SITEURL', 'https://wordpress-black-dust-168.fly.dev');"
